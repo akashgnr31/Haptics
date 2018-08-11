@@ -57,13 +57,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-//import in.ac.iitk.robotics.project.entityObjects.DirectionObject;
-//import in.ac.iitk.robotics.project.entityObjects.LegsObject;
-//import in.ac.iitk.robotics.project.entityObjects.PolylineObject;
-//import in.ac.iitk.robotics.project.entityObjects.RouteObject;
-// import in.ac.iitk.robotics.project.entityObjects.StepsObject;
-//import in.ac.iitk.robotics.project.network.GsonRequest;
-//import in.ac.iitk.robotics.project.network.VolleySingleton;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,8 +96,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     private int mCount;
     private float azimuth;
     private TextView CompassTxt;
-    /** Called with the activity is first created. */
-    private final int LENGTH = 5;
+       private final int LENGTH = 5;
 
     private float sumSin, sumCos;
     private LocationManager locationManager;
@@ -171,14 +163,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     public void buttonclick() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+                     return;
         }
         locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
     }
@@ -201,7 +186,6 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
        mMap.addMarker(new MarkerOptions().position(latLng));
         LatLng defaultLocation = yourLocationMarker.getPosition();
         LatLng destinationLocation = latLng;
-        //use Google Direction API to get the route between these Locations
         String directionApiPath = Helper.getUrl(String.valueOf(defaultLocation.latitude), String.valueOf(defaultLocation.longitude),
                 String.valueOf(destinationLocation.latitude), String.valueOf(destinationLocation.longitude));
         Log.d(TAG, "Path " + directionApiPath);
