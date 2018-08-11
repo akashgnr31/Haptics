@@ -286,7 +286,6 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     }
 
     private void markStartingLocationOnMap(GoogleMap mapObject, LatLng location) {
-        //mapObject.addMarker(new MarkerOptions().position(location).title("Current location"));
         marker=mMap.addMarker(new MarkerOptions()
                 .position(location).flat(true).rotation(orien)
                 .title("Title1"));
@@ -420,9 +419,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
                 j++;
             }
         }
-        // Log.wtf(Tag,"lnnld");
-        //float distance=back.distanceTo(frwrd);
-
+        
         finaone = new ArrayList<>();
         for (int p = 1; p < shortedone.size() - 1; p++) {
             LatLng back = shortedone.get(p - 1);
@@ -442,11 +439,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     }
 
-    /**
-     * Method to decode polyline points
-     * Courtesy : http://jeffreysambells.com/2010/05/27/decoding-polylines-from-google-maps-direction-api-with-java
-     * */
-    @SuppressLint("HandlerLeak")
+        @SuppressLint("HandlerLeak")
     private void signalprocessing() throws InterruptedException {
         Log.d(Tag,"1");
 
@@ -488,9 +481,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         return poly;
     }
     protected void onResume() {
-        // Ideally a game should implement onResume() and onPause()
-        // to take appropriate action when the activity looses focus
-        super.onResume();
+              super.onResume();
         Sensor gsensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         Sensor msensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         mSensorManager.registerListener(this, gsensor, SensorManager.SENSOR_DELAY_GAME);
@@ -498,9 +489,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     }
     @Override
     protected void onPause() {
-        // Ideally a game should implement onResume() and onPause()
-        // to take appropriate action when the activity looses focus
-        super.onPause();
+              super.onPause();
         mSensorManager.unregisterListener(this);
     }
 
@@ -512,18 +501,12 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             data = mGData;
         } else if (type == Sensor.TYPE_MAGNETIC_FIELD) {
             data = mMData;
-        } else {
-            // we should not be here.
+        } else
             return;
         }
         for (int i=0 ; i<3 ; i++)
             data[i] = event.values[i];
         SensorManager.getRotationMatrix(mR, mI, mGData, mMData);
-// some test code which will be used/cleaned up before we ship this.
-//        SensorManager.remapCoordinateSystem(mR,
-//                SensorManager.AXIS_X, SensorManager.AXIS_Z, mR);
-//        SensorManager.remapCoordinateSystem(mR,
-//                SensorManager.AXIS_Y, SensorManager.AXIS_MINUS_X, mR);
         SensorManager.getOrientation(mR, mOrientation);
         float incl = SensorManager.getInclination(mI);
         if (mCount++ > 5) {
@@ -533,8 +516,6 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             add((float)Math.toRadians(azimuth));
 
             orien= (int)(Math.toDegrees(average())+180);
-//            mMap.addMarker(new MarkerOptions().position(kahanpehai).title("admasm").flat(true));
-//            textView.setText(""+s);
 
 
             Log.d("Compass", "yaw: " + (int)(mOrientation[0]*rad2deg) +
@@ -558,12 +539,10 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             int i = 1;
             int l=0;
             Log.d(Tag,"4");
-            // TODO Auto-generated method stub
+            
             while (i<finaone.size()-1) {
                 final int k=i;
                 final float heading1;
-//                    String str="mdmcfdmc";
-//                    textView.setText(str);
                 Log.d(Tag,"5");
                 try{
                     Thread.sleep(5000);
@@ -612,10 +591,6 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
                             else str="right";
                             mMap.addMarker(new MarkerOptions().position(finaone.get(k)).title(str));
                             textView.setText(""+current.latitude+" "+current.longitude);
-
-
-                          //  url_loading();
-
                         }
                     } ,5000);
                      //i++;
